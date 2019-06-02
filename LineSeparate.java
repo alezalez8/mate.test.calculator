@@ -16,7 +16,7 @@ public class LineSeparate {
         int firstSpace = inputLine.indexOf(' ');
         int lastSpace = inputLine.lastIndexOf(' ');
         if (firstSpace == lastSpace) {
-            throw new IllegalArgumentException("You enter expression without space between operands");
+            throw new IllegalArgumentException("You enter expression without space arround operand");
 
         }
 
