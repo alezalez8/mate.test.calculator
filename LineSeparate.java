@@ -1,7 +1,5 @@
 package ua.com.mate.academy;
 
-import ua.com.mate.academy.Calc;
-
 public class LineSeparate {
 
     public void separateInputLine(String inputsLine) {
@@ -13,11 +11,11 @@ public class LineSeparate {
         boolean roman = false;
         boolean resultOperation = true;
 
-        String inputLine = inputsLine.toUpperCase();                                         // upper registr
+        String inputLine = inputsLine.toUpperCase();
 
         int firstSpace = inputLine.indexOf(' ');
         int lastSpace = inputLine.lastIndexOf(' ');
-        if(firstSpace == lastSpace){
+        if (firstSpace == lastSpace) {
             throw new IllegalArgumentException("You enter expression without space between operands");
 
         }
@@ -25,27 +23,25 @@ public class LineSeparate {
         // search first number
 
         for (int i = 0; i < firstSpace; i++) {
-            if (inputLine.charAt(i) >= '0' && inputLine.charAt(i) <= '9') {                       // check arabic
+            if (arabicSymbol(inputLine.charAt(i))) {
                 firstDigit += inputLine.charAt(i);
 
-            } else if ((inputLine.charAt(i) == 'I') | (inputLine.charAt(i) == 'V') | (inputLine.charAt(i) == 'X')
-                    | (inputLine.charAt(i) == 'L') | (inputLine.charAt(i) == 'C') | (inputLine.charAt(i) == 'D')) {
+            } else if (romanSymbol(inputLine.charAt(i))) {
                 roman = true;
                 firstDigit += inputLine.charAt(i);
 
             }
-            operand = inputLine.charAt(i + 2);                                               // search operand
+            operand = inputLine.charAt(i + 2);
         }
 
         //   search second number
         for (int i = lastSpace + 1; i < lineLeight; i++) {
             secondDigit += inputLine.charAt(i);
-            if (roman && (inputLine.charAt(i) == 'I') | (inputLine.charAt(i) == 'V') | (inputLine.charAt(i) == 'X')
-                    | (inputLine.charAt(i) == 'L') | (inputLine.charAt(i) == 'C') | (inputLine.charAt(i) == 'D')) {
+            if (roman && (romanSymbol(inputLine.charAt(i)))) {
             } else {
-                if (!roman && (inputLine.charAt(i) >= '0' && inputLine.charAt(i) <= '9')) {
+                if (!roman && (arabicSymbol(inputLine.charAt(i)))) {
                 } else {
-                    System.out.println("Wrong second operand");
+                    System.out.println("Wrong second number");
                     resultOperation = false;
                     break;
                 }
@@ -57,6 +53,23 @@ public class LineSeparate {
             System.out.println(firstDigit + "  " + operand + "  " +
                     secondDigit + "  =  " + calc.calc(firstDigit, secondDigit, operand, roman));
         } else System.out.println("Input correct number");
+
+    }
+
+    private boolean arabicSymbol(char inputChar) {
+        if (inputChar >= '0' && inputChar <= '9')
+            return true;
+        else
+            return false;
+
+    }
+
+    private boolean romanSymbol(char inputChar) {
+        if ((inputChar == 'I') | (inputChar == 'V') | (inputChar == 'X')
+                | (inputChar == 'L') | (inputChar == 'C') | (inputChar == 'D'))
+            return true;
+        else
+            return false;
 
     }
 

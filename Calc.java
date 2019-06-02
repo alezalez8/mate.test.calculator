@@ -16,6 +16,10 @@ public class Calc {
         } else {
             num1 = konverRom.romanToDecimal(first);
             num2 = konverRom.romanToDecimal(second);
+            if (num1 < num2){
+                int num3 = num1;
+
+            }
         }
 
         switch (operator) {

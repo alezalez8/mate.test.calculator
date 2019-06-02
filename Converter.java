@@ -71,6 +71,11 @@ public class Converter {
     }
 
     public final String toRoman(int number) {
+        if (number < 0) {
+            System.out.println("Roman number can't be negativ");
+            System.out.println("so result is positiv :)");
+            number = Math.abs(number);
+        }
         if (number == 0) {
             return "No result";
         }
